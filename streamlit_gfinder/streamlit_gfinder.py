@@ -7,14 +7,16 @@ import settings
 import math
 
 
-ga_tracking_code = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+ga_tracking_code = """<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-78L3J2XG0X');
-</script>"""
+    gtag('config', 'G-78L3J2XG0X');
+  </script>
+</head>"""
 
 # Streamlit에 Google Analytics 코드 삽입
 components.html(ga_tracking_code, height=0)
