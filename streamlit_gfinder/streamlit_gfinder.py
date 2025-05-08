@@ -7,20 +7,39 @@ import settings
 import math
 
 
-ga_tracking_code = """<head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+# Google Analytics 스크립트
+ga_tracking_code = """
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'G-78L3J2XG0X');
-  </script>
-</head>"""
+  gtag('config', 'G-78L3J2XG0X');
+</script>
+"""
+
 
 # Streamlit에 Google Analytics 코드 삽입
-# components.html(ga_tracking_code, height=0)
-st.markdown(ga_tracking_code, unsafe_allow_html=True)
+components.html("""
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+""", height=315)
+
+# 이벤트 추적을 위한 JavaScript
+def track_button_click():
+    components.html("""
+    <script>
+        gtag('event', 'button_click', {
+            'event_category': 'button',
+            'event_label': 'example_button',
+            'value': 1
+        });
+    </script>
+    """, height=0)
+# Streamlit 버튼
+if st.button("Click Me"):
+    track_button_click()
+    st.write("Button clicked! The event is being tracked by Google Analytics.")
 
 def fetch_bunsyo_data(env: str, index_name: str, query: dict, sort: list, page: int, size: int):
     """
