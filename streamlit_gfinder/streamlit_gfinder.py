@@ -19,7 +19,8 @@ ga_tracking_code = """<head>
 </head>"""
 
 # Streamlit에 Google Analytics 코드 삽입
-components.html(ga_tracking_code, height=0)
+# components.html(ga_tracking_code, height=0)
+st.markdown(ga_tracking_code, unsafe_allow_html=True)
 
 def fetch_bunsyo_data(env: str, index_name: str, query: dict, sort: list, page: int, size: int):
     """
