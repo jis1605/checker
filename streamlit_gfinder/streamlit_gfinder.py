@@ -7,16 +7,13 @@ import settings
 import math
 
 
-
-ga_tracking_code = """ <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2KMN3D1KS"></script>
+ga_tracking_code = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-G2KMN3D1KS');
-  window.dataLayer.push({'event': 'debug'});
-
+  gtag('config', 'G-78L3J2XG0X');
 </script>"""
 
 # Streamlit에 Google Analytics 코드 삽입
@@ -323,6 +320,16 @@ if file_id_option:
 # 追加
 search_text_option = st.text_input('検索語を入力してください (title または content_text)', None)
 if search_text_option:
+     # Google Analytics 이벤트 전송
+    components.html(f"""
+    <script>
+        gtag('event', 'search_query', {{
+            'event_category': 'search',
+            'event_label': '{search_text_option}',
+            'value': 1
+        }});
+    </script>
+    """, height=0)
     query["bool"]["must"].append({
         "multi_match": {
             "query": search_text_option,
@@ -392,17 +399,47 @@ pagination_buttons = st.columns(end_page - start_page + 3)
 
 with pagination_buttons[0]:
     if st.button("前のページ", disabled=current_page == 1):
+        # Google Analytics 이벤트 전송
+        components.html("""
+        <script>
+            gtag('event', 'page_navigation', {
+                'event_category': 'pagination',
+                'event_label': 'previous_page',
+                'value': 1
+            });
+        </script>
+        """, height=0)
         st.session_state["current_page"] = max(1, current_page - 1)
         st.experimental_rerun()
 
 for idx, page in enumerate(range(start_page, end_page + 1), start=1):
     with pagination_buttons[idx]:
         if st.button(str(page), disabled=page == current_page):
+            # Google Analytics 이벤트 전송
+            components.html(f"""
+            <script>
+                gtag('event', 'page_navigation', {{
+                    'event_category': 'pagination',
+                    'event_label': 'page_{page}',
+                    'value': {page}
+                }});
+            </script>
+            """, height=0)
             st.session_state["current_page"] = page
             st.experimental_rerun()
 
 with pagination_buttons[-1]:
     if st.button("次のページ", disabled=current_page == total_pages):
+        # Google Analytics 이벤트 전송
+        components.html("""
+        <script>
+            gtag('event', 'page_navigation', {
+                'event_category': 'pagination',
+                'event_label': 'next_page',
+                'value': 1
+            });
+        </script>
+        """, height=0)
         st.session_state["current_page"] = min(total_pages, current_page + 1)
         st.experimental_rerun()
 
