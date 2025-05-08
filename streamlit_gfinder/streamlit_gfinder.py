@@ -21,9 +21,7 @@ ga_tracking_code = """
 
 
 # Streamlit에 Google Analytics 코드 삽입
-components.html("""
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-""", height=315)
+components.html(ga_tracking_code, height=0)
 
 # 이벤트 추적을 위한 JavaScript
 def track_button_click():
