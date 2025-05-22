@@ -18,6 +18,7 @@ ga_tracking_code = """
 
     gtag('config', 'G-78L3J2XG0X');
     </script>
+    <span>test123</span>
 <head>
 """
 
