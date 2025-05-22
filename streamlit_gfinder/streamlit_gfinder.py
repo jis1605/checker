@@ -8,23 +8,24 @@ import math
 
 
 # Google Analytics 스크립트
-ga_tracking_code = """
-<haed>
+ga_script = """
+<iframe width="0" height="0" style="display:none;" 
+src="about:blank">
+  <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-78L3J2XG0X');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-78L3J2XG0X');
     </script>
-    <span>test123</span>
-<head>
+  </head>
+</iframe>
 """
 
 
 # Streamlit에 Google Analytics 코드 삽입
-components.html(ga_tracking_code, height=0)
+st.components.v1.html(ga_script, height=0)
 
 # 이벤트 추적을 위한 JavaScript
 def track_button_click():
