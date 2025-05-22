@@ -9,14 +9,16 @@ import math
 
 # Google Analytics 스크립트
 ga_tracking_code = """
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<haed>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-78L3J2XG0X"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-78L3J2XG0X');
-</script>
+    gtag('config', 'G-78L3J2XG0X');
+    </script>
+<head>
 """
 
 
