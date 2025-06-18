@@ -295,7 +295,7 @@ INDICES = {
     "計画・方針": "bunsyo_local_keikakuhoshin_v0.0.1",
     "予算・決算": "bunsyo_local_yosankessan_v0.0.1",
     "広報": "bunsyo_local_kouhou_v0.0.1",
-    "委員会議事録": "bunsyo_local_iinkaigijiroku_v0.0.1",
+    "委員会議事録": "bunsyo_local_iinkaigijiroku_for_gijirokudataprocess",
     "その他": "bunsyo_local_sonota_v0.0.1",
 }
 
